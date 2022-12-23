@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "MyCRM",
+  "outputfilename": "MyCRM",
+  "frontend:dir": "../webapp",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build:wails",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Daniel Cunha",
+    "email": "danielbrandaodacunha@gmail.com"
+  }
+}
