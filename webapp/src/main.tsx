@@ -1,14 +1,32 @@
-import React from 'react'
-import {createRoot} from 'react-dom/client'
-import './style.css'
-import App from './App'
+import React from "react";
+import { createRoot } from "react-dom/client";
+import "./sass/styles.scss";
+import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Customers from "./views/Customer/Customers";
 
-const container = document.getElementById('root')
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/",
+    children: [
+      {
+        path: "/customer",
+        element: <Customers />,
+      },
+    ],
+  },
+]);
 
-const root = createRoot(container!)
+const container = document.getElementById("root");
+
+const root = createRoot(container!);
 
 root.render(
-    <React.StrictMode>
-        <App/>
-    </React.StrictMode>
-)
+  <React.StrictMode>
+		<RouterProvider router={router} />
+  </React.StrictMode>
+);
