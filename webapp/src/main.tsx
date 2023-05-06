@@ -4,17 +4,20 @@ import "./sass/styles.scss";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Customers from "./views/Customer/Customers";
+import translations from './translations/I18n'
+import Dashboard from "./views/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/",
     children: [
       {
-        path: "/customer",
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/customers",
         element: <Customers />,
       },
     ],
@@ -24,6 +27,8 @@ const router = createBrowserRouter([
 const container = document.getElementById("root");
 
 const root = createRoot(container!);
+
+translations.configure('en-US');
 
 root.render(
   <React.StrictMode>

@@ -1,0 +1,16 @@
+{
+  "customer": {
+    "customer": "Customer",
+    "customerName": "Name",
+    "firstName": "First Name",
+    "lastName": "Surname",
+    "birthDate": "Birth Date",
+    "email": "E-mail",
+    "primaryPhone": "Phone",
+    "obs": "Additional Information"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "customers": "Customers"
+  }
+}
