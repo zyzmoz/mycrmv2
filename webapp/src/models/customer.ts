@@ -1,11 +1,11 @@
 export type TCustomer = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+  ID: string;
+  FirstName: string;
+  LastName: string;
+  Email: string;
   primaryPhone: string;
-  birthDate: string;
-  obs: string;
+  BirthDate: string;
+  Obs: string;
 }
 
 export type TCustomers = TCustomer[]

@@ -4,7 +4,7 @@ import "./sass/styles.scss";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Customers from "./views/Customer/Customers";
-import translations from './translations/I18n'
+import translations from "./translations/I18n";
 import Dashboard from "./views/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
@@ -28,10 +28,10 @@ const container = document.getElementById("root");
 
 const root = createRoot(container!);
 
-translations.configure('en-US');
+translations.configure("en-US");
 
 root.render(
   <React.StrictMode>
-		<RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

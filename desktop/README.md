@@ -1,6 +1,16 @@
 # README
 
-## About
+
+## IDK
+
+[] Create integration with the API when set as Remote server?
+OR
+[] Sync Module between SQLite and MYSQL(ideally any relational DB)
+
+
+
+-----
+## About Wails
 
 This is the official Wails React-TS template.
 
