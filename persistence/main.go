@@ -25,5 +25,11 @@ func InitDb() {
 		panic("failed to create database connection")
 	}
 
+	database.DBConn.AutoMigrate(&domain.Address{})
+	database.DBConn.AutoMigrate(&domain.Agent{})
+	database.DBConn.AutoMigrate(&domain.Contact{})
 	database.DBConn.AutoMigrate(&domain.Customer{})
 }
+
+// TODO: Create a webserver module to easy dev tests
+// Also, when we create the sync module, well need that anyways;
