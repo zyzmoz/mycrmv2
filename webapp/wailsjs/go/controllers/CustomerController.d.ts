@@ -4,7 +4,7 @@ import {domain} from '../models';
 
 export function Create(arg1:domain.Customer):Promise<domain.Customer>;
 
-export function Delete(arg1:domain.Customer):Promise<Error>;
+export function Delete(arg1:domain.Customer):Promise<void>;
 
 export function FindAll():Promise<Array<domain.Customer>>;
 

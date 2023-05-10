@@ -9,7 +9,6 @@ type Contact struct {
 	ID          string `gorm:"primaryKey"`
 	CustomerID  string
 	PhoneNumber string
-	Email       string
 	Description string
-	Primary     bool
+	IsPrimary   bool
 }
