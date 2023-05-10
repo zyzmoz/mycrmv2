@@ -1,14 +1,10 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	customer "github.com/zyzmoz/mycrm/api/handlers"
 	"github.com/zyzmoz/mycrm/persistence"
-	"github.com/zyzmoz/mycrm/persistence/database"
-	"github.com/zyzmoz/mycrm/persistence/infra"
-	"github.com/zyzmoz/mycrm/persistence/interfaces"
 )
 
 func main() {
@@ -17,7 +13,11 @@ func main() {
 		AllowOrigins: "*",
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
-	persistence.InitDb()
+	err := persistence.InitDb()
+
+	if err != nil {
+		panic("Error connecting to the database")
+	}
 
 	// TODO: Create proper routes for each entity OR endpoint type
 	// Eg. Dashboard, Customers, Agents etc
@@ -26,12 +26,9 @@ func main() {
 	})
 
 	app.Get("/customers", func(ctx *fiber.Ctx) error {
-		logger := infra.NewLogger()
-		ctrl := interfaces.NewCustomerController(database.DBConn, logger)
-		customers, err := ctrl.FindAll()
+		customers, err := customer.FindAll()
 		if err != nil {
-			fmt.Printf("%s", err)
-			return nil
+			return ctx.Status(400).SendString("Error Fetchig Data")
 		}
 
 		return ctx.JSON(customers)

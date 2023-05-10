@@ -1,5 +1,11 @@
 # README
 
+## TODO
+
+- [ ] Modal/Error Handler 
+  - Db Connection
+  - API Connection
+
 
 ## IDK
 

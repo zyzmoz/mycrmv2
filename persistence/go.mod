@@ -7,7 +7,10 @@ require (
 	gorm.io/driver/sqlserver v1.4.1
 )
 
-require github.com/mattn/go-sqlite3 v1.14.15 // indirect
+require (
+	github.com/joho/godotenv v1.5.1 // indirect
+	github.com/mattn/go-sqlite3 v1.14.15 // indirect
+)
 
 require (
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect

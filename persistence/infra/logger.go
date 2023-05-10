@@ -11,6 +11,11 @@ import (
 type Logger struct{}
 
 func NewLogger() usecases.Logger {
+	err := os.Mkdir("./logs", 0766)
+	if err != nil {
+		log.Printf("%s", err)
+	}
+
 	return &Logger{}
 }
 
