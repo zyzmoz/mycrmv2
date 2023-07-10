@@ -3,24 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./sass/styles.scss";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Customers from "./views/Customer/Customers";
 import translations from "./translations/I18n";
-import Dashboard from "./views/Dashboard/Dashboard";
+import { routes } from './routes';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/customers",
-        element: <Customers />,
-      },
-    ],
+    children: routes.map(({path, Element}) => ({path, element: <Element />}))     
   },
 ]);
 
