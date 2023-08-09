@@ -3,14 +3,19 @@ import { createRoot } from "react-dom/client";
 import "./sass/styles.scss";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import translations from "./translations/I18n";
-import { routes } from './routes';
+import { routes } from "./routes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: routes.map(({path, Element}) => ({path, element: <Element />}))     
+    children: routes.map(({ path, Element }) => ({
+      path,
+      element: <Element />,
+    })),
   },
 ]);
 
@@ -22,6 +27,8 @@ translations.configure("en-US");
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

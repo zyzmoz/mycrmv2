@@ -1,4 +1,8 @@
 {
+  "general": {
+    "new": "Novo",
+    "search": "Buscar"
+  },
   "customer": {
     "customer": "Cliente",
     "customerName": "Nome",

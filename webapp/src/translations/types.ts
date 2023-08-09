@@ -7,14 +7,20 @@ export type CustomerTranslations = {
   email: string;
   primaryPhone: string;
   obs: string;
-}
+};
 
 export type SideBarTranslations = {
   dashboard: string;
   customers: string;
-}
+};
+
+export type GeneralTranslations = {
+  new: string;
+  search: string;
+};
 
 export type Dictionary = {
-  customer: CustomerTranslations,
-  sidebar: SideBarTranslations
-}
+  general: GeneralTranslations;
+  customer: CustomerTranslations;
+  sidebar: SideBarTranslations;
+};

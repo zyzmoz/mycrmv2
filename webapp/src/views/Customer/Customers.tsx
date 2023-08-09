@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import {
   Button,
   Paper,
@@ -9,86 +11,58 @@ import {
   TableRow,
   TextField,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Star } from "@mui/icons-material";
 import { i18n } from "../../translations/I18n";
-import { Add } from "@mui/icons-material";
 import { TCustomers } from "../../models/customer";
-import { useEffect, useState } from "react";
-
-// TODO: Remove after data integration
-
-// const rows: TCustomers = [
-//   {
-//     id: "1a",
-//     firstName: "Customer 1",
-//     lastName: "One",
-//     email: "cone@email.com",
-//     primaryPhone: "23190234781",
-//     obs: "Text 1",
-//     birthDate: "01/01/1991",
-//   },
-//   {
-//     id: "1b",
-//     firstName: "Customer 2",
-//     lastName: "Two",
-//     email: "ctwo@email.com",
-//     primaryPhone: "23190234781",
-//     obs: "Text 2",
-//     birthDate: "01/02/1991",
-//   },
-//   {
-//     id: "1c",
-//     firstName: "Customer 3",
-//     lastName: "Three",
-//     email: "c3@email.com",
-//     primaryPhone: "23190234781",
-//     obs: "Text 3",
-//     birthDate: "01/03/1991",
-//   },
-//   {
-//     id: "1d",
-//     firstName: "Customer 4",
-//     lastName: "Four",
-//     email: "c4@email.com",
-//     primaryPhone: "23190234781",
-//     obs: "Text 4",
-//     birthDate: "01/04/1991",
-//   },
-// ];
+import { open } from "../../reducers/modalSlice";
 
 const Customers: React.FC = () => {
   const [searchText, setSearchText] = useState("");
+  const query = useQuery('customers', apiCALL)
   const [customers, setCustomers] = useState<TCustomers>([]);
+  const dispatch = useDispatch();
 
   // TODO: DELETE THIS CODE SMELL (TEST ONLY)
   useEffect(() => {
     (async () => {
       if (1 + 1 === 3) {
-        const ctrl = await import( "../../../wailsjs/go/controllers/CustomerController.js")
-        console.log(ctrl)
+        const ctrl = await import(
+          "../../../wailsjs/go/controllers/CustomerController.js"
+        );
+        console.log(ctrl);
         const customerList = await ctrl.FindAll();
         setCustomers(customerList);
       } else {
-        const res = await fetch('http://localhost:8081/customers');
+        const res = await fetch("http://localhost:8081/customers");
         const customerList = await res.json();
         setCustomers(customerList);
-      } 
+      }
     })();
   }, []);
 
-  console.log("customers", customers);
+  const handleNewCustomer = () => {
+    dispatch(open("world"));
+  };
 
   return (
     <>
       <div style={styles.header}>
         <TextField
+          fullWidth
           id="standard-basic"
-          label="Search"
-          variant="standard"
+          label={`${i18n.general.search} ${i18n.customer.customer}`}
+          variant="outlined"
           onChange={(e) => setSearchText(e.target.value)}
         />
 
-        <Button variant="contained">
-          <Add /> Add
+        <Button
+          onClick={handleNewCustomer}
+          color="success"
+          variant="contained"
+          sx={{ height: "56px" }}
+        >
+          <Star /> {i18n.general.new}
         </Button>
       </div>
 
@@ -107,8 +81,7 @@ const Customers: React.FC = () => {
               .filter(
                 (r) =>
                   `${r.FirstName} ${r.LastName}`.includes(searchText) ||
-                  r.Email.includes(searchText) ||
-                  r.primaryPhone.includes(searchText)
+                  r.Email?.includes(searchText)
               )
               .map((row) => (
                 <TableRow
@@ -135,7 +108,9 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    margin: "1rem",
+    margin: "0",
+    marginBottom: "1rem",
+    gap: "1rem",
   },
 };
 
