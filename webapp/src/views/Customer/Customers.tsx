@@ -19,7 +19,7 @@ import { open } from "../../reducers/modalSlice";
 
 const Customers: React.FC = () => {
   const [searchText, setSearchText] = useState("");
-  const query = useQuery('customers', apiCALL)
+  // const query = useQuery('customers', apiCALL)
   const [customers, setCustomers] = useState<TCustomers>([]);
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const Customers: React.FC = () => {
   }, []);
 
   const handleNewCustomer = () => {
-    dispatch(open("world"));
+    dispatch(open("new-customer"));
   };
 
   return (

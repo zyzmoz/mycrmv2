@@ -1,7 +1,10 @@
 {
   "general": {
     "new": "New",
-    "search": "Search"
+    "search": "Search",
+    "cancel": "Cancel",
+    "save": "Save",
+    "additionalInfo": "Additional Info"
   },
   "customer": {
     "customer": "Customer",
@@ -11,7 +14,16 @@
     "birthDate": "Birth Date",
     "email": "E-mail",
     "primaryPhone": "Phone",
-    "obs": "Additional Information"
+    "obs": "Additional Information",
+    "new": "New Customer",
+    "govId": "ID",
+    "taxId": "Tax ID",
+    "address": "Address",
+    "zipCode": "Postal Code",
+    "neighborhood": "Neighborhood",
+    "city": "City",
+    "province": "Province",
+    "mobilePhone": "Mobile"
   },
   "sidebar": {
     "dashboard": "Dashboard",

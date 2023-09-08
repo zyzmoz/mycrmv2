@@ -1,11 +1,13 @@
 import { Close } from "@mui/icons-material";
-import { Box, Button, Modal } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { close } from "../../reducers/modalSlice";
+import { getModal } from "./modalUtils";
 
 interface IModalProps {
   isOpen: boolean;
-  modalId: string | null;
+  modalId: string | "";
+  title?: string;
   onClose?: () => void;
 }
 
@@ -18,7 +20,7 @@ const style = {
   border: "1px solid #d6d6d6",
   borderRadius: "5px",
   boxShadow: 24,
-  // p: 4,
+  // p: 1,
 };
 
 export const ModalComponent: React.FC<IModalProps> = ({
@@ -33,22 +35,35 @@ export const ModalComponent: React.FC<IModalProps> = ({
     dispatch(close());
   };
 
+  const modalData = getModal(modalId);
+
+  if (!modalData) return <></>;
+
   const ModalContent = () => {
-    return <>Hello {modalId}</>;
+    const { Content } = modalData;
+    return <Content onClose={handleClose} />;
   };
 
   return (
     <Modal
       open={isOpen}
-      onClose={handleClose}
+      // Maybe we don't want to dismiss the modal when clicked outside
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style} onClick={handleClose}>
-        <Button variant="text" color="inherit" sx={{ minWidth: "unset" }}>
-          <Close />
-        </Button>
-        <Box sx={{ padding: "0 .6rem .6rem .6rem"}}>
+      <Box sx={style}>
+        <Box sx={{ display: "flex", marginBottom: 2, alignItems: 'center', backgroundColor: "#f5f5f5" }}>
+          <Button
+            variant="text"
+            color="inherit"
+            sx={{ minWidth: "unset" }}
+            onClick={handleClose}
+          >
+            <Close />
+          </Button>
+          <Typography component="span">{modalData?.title}</Typography>
+        </Box>
+        <Box sx={{ padding: "0 .6rem .6rem .6rem" }}>
           <ModalContent />
         </Box>
       </Box>
