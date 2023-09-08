@@ -9,7 +9,11 @@ type Customer struct {
 	ID        string `gorm:"primaryKey"`
 	FirstName string
 	LastName  string
+	GovID     string
+	TaxID     string
 	Email     string
+	Phone     string
+	Mobile    string
 	Gender    string // TODO: Change this field to be an enum?
 	BirthDate string
 	Obs       string

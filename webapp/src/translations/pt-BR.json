@@ -1,4 +1,11 @@
 {
+  "general": {
+    "new": "Novo",
+    "search": "Buscar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "additionalInfo": "Obsercações"
+  },
   "customer": {
     "customer": "Cliente",
     "customerName": "Nome",
@@ -7,7 +14,16 @@
     "birthDate": "Aniversário",
     "email": "E-mail",
     "primaryPhone": "Telefone",
-    "obs": "Observações"
+    "obs": "Observações",
+    "new": "Novo Cliente",
+    "govId": "RG/IE",
+    "taxId": "CPF/CNPJ",
+    "address": "Encereço",
+    "zipCode": "CEP",
+    "neighborhood": "Bairro",
+    "city": "Cidade",
+    "province": "Estado",
+    "mobilePhone": "Celular"
   },
   "sidebar": {
     "dashboard": "Dashboard",

@@ -3,24 +3,19 @@ import { createRoot } from "react-dom/client";
 import "./sass/styles.scss";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Customers from "./views/Customer/Customers";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import translations from "./translations/I18n";
-import Dashboard from "./views/Dashboard/Dashboard";
+import { routes } from "./routes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/customers",
-        element: <Customers />,
-      },
-    ],
+    children: routes.map(({ path, Element }) => ({
+      path,
+      element: <Element />,
+    })),
   },
 ]);
 
@@ -32,6 +27,8 @@ translations.configure("en-US");
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
